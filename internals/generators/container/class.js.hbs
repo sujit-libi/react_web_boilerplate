@@ -35,7 +35,19 @@ import messages from './messages';
 
 /* eslint-disable react/prefer-stateless-function */
 export class {{ properCase name }} extends {{{ type }}} {
+  state = {};
+  componentWillMount(){
+
+  }
+  componentDidMount(){
+
+  }
+  componentWillReceiveProps(nextProps){
+
+  }
   render() {
+    const {} = this.state;
+    const {} = this.props;
     return (
       <div>
       {{#if wantHeaders}}
@@ -54,19 +66,25 @@ export class {{ properCase name }} extends {{{ type }}} {
 
 {{ properCase name }}.propTypes = {
   dispatch: PropTypes.func.isRequired,
+    isRequesting: PropTypes.bool.isRequired,
+  isSuccess: PropTypes.bool.isRequired,
+  errorResponse: PropTypes.string.isRequired,
+  successResponse: PropTypes.string.isRequired,
 };
 
 {{#if wantActionsAndReducer}}
 const mapStateToProps = createStructuredSelector({
   {{ lowerCase name }}: makeSelect{{properCase name}}(),
+  isRequesting: makeSelectRequesting(),
+  isSuccess: makeSelectSuccess(),
+  errorResponse: makeSelectError(),
+  successResponse: makeSelectResponse(),
 });
 {{/if}}
 
-function mapDispatchToProps(dispatch) {
-  return {
-    dispatch,
-  };
-}
+const mapDispatchToProps = (dispatch) => ({
+  
+})
 
 {{#if wantActionsAndReducer}}
 const withConnect = connect(
