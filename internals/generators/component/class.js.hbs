@@ -15,7 +15,10 @@ import messages from './messages';
 
 /* eslint-disable react/prefer-stateless-function */
 class {{ properCase name }} extends {{{ type }}} {
+  state={};
   render() {
+    const {} = this.state;
+    const {} = this.props;
     return (
       <div>
       {{#if wantMessages}}

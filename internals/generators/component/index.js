@@ -99,11 +99,6 @@ module.exports = {
       });
     }
 
-    actions.push({
-      type: 'prettify',
-      path: '/components/',
-    });
-
     return actions;
   },
 };
