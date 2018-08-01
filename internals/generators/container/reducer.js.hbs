@@ -19,6 +19,12 @@ function {{ camelCase name }}Reducer(state = initialState, action = {type: ''}) 
   switch (action.type) {
     case types.DEFAULT_ACTION:
       return state;
+    case types.DEFAULT_ACTION_REQUEST:
+      return state;
+    case types.DEFAULT_ACTION_SUCCESS:
+      return state;
+    case types.DEFAULT_ACTION_ERROR:
+      return state;
     default:
       return state;
   }

@@ -34,7 +34,7 @@ export class ExampleContainer extends React.Component {
     return (
       <div>
         <Helmet>
-          <title>ExampleContainer</title>
+          <title>Example Container</title>
           <meta name="description" content="Description of ExampleContainer" />
         </Helmet>
         <FormattedMessage {...messages.header} />
