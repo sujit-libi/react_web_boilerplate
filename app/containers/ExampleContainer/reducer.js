@@ -19,12 +19,28 @@ function exampleContainerReducer(state = initialState, action = {type: ''}) {
   switch (action.type) {
     case types.DEFAULT_ACTION:
       return state;
-    case types.DEFAULT_ACTION_REQUEST:
-      return state;
-    case types.DEFAULT_ACTION_SUCCESS:
-      return state;
-    case types.DEFAULT_ACTION_FAILURE:
-      return state;
+    case types.GET_ALL_BLOG_REQUEST:
+      return state.merge({
+        requesting: true,
+        response:'',
+        error:'',
+        success: false
+      });
+    case types.GET_ALL_BLOG_SUCCESS:
+      return state.merge({
+        requesting: false,
+        response: '',
+        error: '',
+        success: true,
+        dataObj: fromJS(action.response.data.dataList)
+      })
+    case types.GET_ALL_BLOG_FAILURE:
+      return state.merge({
+        requesting: false,
+        response: '',
+        error: action.error.message,
+        success: false
+      })
     default:
       return state;
   }

@@ -19,17 +19,32 @@ import {
   makeSelectRequesting,
   makeSelectError,
   makeSelectResponse,
-  makeSelectSuccess
+  makeSelectSuccess,
+  makeSelectAllBlogResult
 } from './selectors';
 import reducer from './reducer';
 import saga from './saga';
 import messages from './messages';
+import {getAllBlogRequest} from './actions';
 
 /* eslint-disable react/prefer-stateless-function */
 export class ExampleContainer extends React.Component {
-  state = {};
+  state = {
+    blog:[]
+  };
+  componentDidMount() {
+    this.props.getAllBlogRequest();
+  }
+  componentWillReceiveProps(nextProps){
+    if(this.props.allBlogResult !== nextProps.allBlogResult){
+      // console.log(nextProps.allBlogResult.toJS())
+      this.setState(state => ({
+        blog : nextProps.allBlogResult.toJS() 
+      }))
+    }
+  }
   render() {
-    const {} = this.state;
+    const {blog} = this.state;
     const {} = this.props;
     return (
       <div>
@@ -38,6 +53,11 @@ export class ExampleContainer extends React.Component {
           <meta name="description" content="Description of ExampleContainer" />
         </Helmet>
         <FormattedMessage {...messages.header} />
+        {blog && blog.length > 0 && blog.map((blog)=>(
+            <h1 key={`${blog._id}`}>{blog.title}</h1>
+          )
+        )}
+
       </div>
     );
   }
@@ -55,10 +75,11 @@ const mapStateToProps = createStructuredSelector({
   isSuccess: makeSelectSuccess(),
   errorResponse: makeSelectError(),
   successResponse: makeSelectResponse(),
+  allBlogResult: makeSelectAllBlogResult()
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  
+  getAllBlogRequest: () => dispatch(getAllBlogRequest())
 })
 
 const withConnect = connect(

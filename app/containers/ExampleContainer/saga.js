@@ -32,7 +32,18 @@ function* defaultActionService(action) {
     yield cancel(successWatcher);
 }
 
+function* getAllBlogRequest(action){
+    yield fork(
+        Api.get(
+            `blog`,
+            actions.getAllBlogSuccess,
+            actions.getAllBlogFailure,
+        )
+    )
+}
+
 // Individual exports for testing
 export default function* defaultSaga() {
-    yield takeLatest(types.DEFAULT_ACTION_REQUEST, defaultActionService);
+    // yield takeLatest(types.DEFAULT_ACTION_REQUEST, defaultActionService);
+    yield takeLatest(types.GET_ALL_BLOG_REQUEST, getAllBlogRequest);
 }

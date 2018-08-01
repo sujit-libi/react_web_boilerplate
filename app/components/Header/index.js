@@ -20,8 +20,8 @@ class Header extends React.Component {
           <HeaderLink to="/features">
             <FormattedMessage {...messages.features} />
           </HeaderLink>
-          <HeaderLink to="/#doc">
-            <FormattedMessage {...messages.docs} />
+          <HeaderLink to="/example">
+            <FormattedMessage {...messages.example} />
           </HeaderLink>
           <HeaderLink to="/login">
             <FormattedMessage {...messages.login} />
