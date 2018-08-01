@@ -22,6 +22,7 @@ import FeaturePage from 'containers/FeaturePage/Loadable';
 import NotFoundPage from 'containers/NotFoundPage/Loadable';
 import LoginPage from '../LoginPage/Loadable';
 import AdminDashboard from '../Dashboard/Admin';
+import ExamplePage from '../ExampleContainer/Loadable';
 import Header from 'components/Header';
 import Footer from 'components/Footer';
 import GuestRoute from 'components/Routes/GuestRoute';
@@ -68,6 +69,7 @@ const App = props => {
       <Switch>
         <Route exact path="/" component={HomePage} />
         <Route path="/features" component={FeaturePage} />
+        <Route path="/example" component={ExamplePage} />
         <GuestRoute
           exact
           location={location}
